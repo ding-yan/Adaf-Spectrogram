@@ -15,7 +15,7 @@ creat Adaf-Spectrogram:
 | BSC5         | bird song data set                       | [Kaggle - BSC5](https://www.kaggle.com/datasets/vinayshanbhag/bird-song-data-set/data) |
 | TTSwing2.0   | Table Tennis Swing Dataset v2            | (Not publicly available due to privacy concerns) |
 > **Note:**  
-> Additionally, the TTSwing2.0 dataset contains personal information and is therefore not publicly released, along with its corresponding code.
+> The TTSwing2.0 dataset contains personal information and is therefore not publicly released, along with its corresponding code.
 
 ## Kaggle Link
 - All experiments in this study were implemented using the PyTorch framework and trained on the Kaggle platform with NVIDIA P100 GPUs.  
