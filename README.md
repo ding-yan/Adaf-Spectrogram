@@ -35,12 +35,13 @@ creat Adaf-Spectrogram:
 > Each Kaggle notebook is pre-configured with the required input datasets.  
 > 
 > The dataset image folders follow a consistent naming convention, making it easy to understand the spectrogram type and configuration used.
+>
 > **Folder Naming Format:**
 >
 > ```
 > <Dataset>_<SpectrogramType>_<NumberOfSections or Bands>(<SpectrumType>)
 > ```
-> - `<Dataset>`: Name of the dataset (e.g., BSC5, ESC50, MicSigV1)
+> - `<Dataset>`: Name of the dataset (e.g., MicSigV1, ESC50, BSC5)
 > - `<SpectrogramType>`: Type of spectrogram used (e.g., Adaf, Mel, Spectrograms)
 > - `<NumberOfSections or Bands>`: Number of frequency sections or mel bands (if applicable)
 > - `<SpectrumType>`: Type of spectrum representation — Amplitude, Power, or dB (optional)
