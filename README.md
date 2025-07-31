@@ -35,7 +35,7 @@ creat Adaf-Spectrogram:
 > Each Kaggle notebook is pre-configured with the required input datasets.  
 > 
 > The dataset image folders follow a consistent naming convention, making it easy to understand the spectrogram type and configuration used.
->
+
 > **Folder Naming Format:**
 >
 > ```
