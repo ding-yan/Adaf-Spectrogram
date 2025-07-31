@@ -20,8 +20,8 @@ creat Adaf-Spectrogram:
 > Additionally, the TTSwing2.0 dataset contains personal information and is therefore not publicly released, along with its corresponding code.
 
 ## Kaggle Link
--All experiments in this study were implemented using the PyTorch framework and trained on the Kaggle platform with NVIDIA P100 GPUs.  
--The training code is available at the following Kaggle notebooks, or you can download them from the respective dataset folders in this repository.
+- All experiments in this study were implemented using the PyTorch framework and trained on the Kaggle platform with NVIDIA P100 GPUs.  
+- The training code is available at the following Kaggle notebooks, or you can download them from the respective dataset folders in this repository.
 
 | Dataset    | Model | Kaggle Notebook Link                                                                                         |
 |------------|--------|-------------------------------------------------------------------------------------------------------------|
