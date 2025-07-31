@@ -31,3 +31,15 @@ creat Adaf-Spectrogram:
 | ESC50      | ViT    | [ESC50 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/esc50-5-fold-vit)                               |
 | BSC5       | CNN    | [BSC5 - 5-Fold CNN](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-cnn)                                 |
 | BSC5       | ViT    | [BSC5 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-vit)                                 |
+> **Note:**  
+> Each Kaggle notebook is pre-configured with the required input datasets.  
+> 
+> The dataset image folders follow a consistent naming convention, making it easy to understand the spectrogram type and configuration used.
+> <Dataset><SpectrogramType><NumberOfSections or Bands>(<SpectrumType>)
+> - `<Dataset>`: Name of the dataset (e.g., BSC5, ESC50, MicSigV1)
+> - `<SpectrogramType>`: Type of spectrogram used (e.g., Adaf, Mel, Spectrograms)
+> - `<NumberOfSections or Bands>`: Number of frequency sections or mel bands (if applicable)
+> - `<SpectrumType>`: Type of spectrum representation — Amplitude, Power, or dB (optional)
+
+
+
