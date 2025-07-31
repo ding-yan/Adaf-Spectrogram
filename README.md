@@ -1,4 +1,5 @@
 # Adaf-Spectrogram
+We proposes a novel Adaptive Frequency Spectrogram (Adaf-Spectrogram). This data-driven method automatically adjusts the frequency axis scaling by computing the overall frequency energy distribution across an entire dataset, thereby more effectively emphasizing critical frequency features. Experimental results demonstrate that the proposed Adaf-Spectrogram exhibits excellent adaptability across multiple datasets. Furthermore, it outperforms conventional linear-scale spectrograms in recognition tasks, showcasing a significant performance improvement.
 
 ## Environment
 
