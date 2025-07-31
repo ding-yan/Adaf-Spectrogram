@@ -3,6 +3,7 @@ We proposes a novel **Adaptive Frequency-Axis Spectrogram (Adaf-Spectrogram)**. 
 <p align="center">
   <img src="https://github.com/ding-yan/Adaf-Spectrogram/raw/main/Adaf-Spectrogram%20Process%20diagram.png" alt="Adaf-Spectrogram Process Diagram" width="700"/>
 </p>
+
 ## Environment
 creat Adaf-Spectrogram:
 
@@ -17,5 +18,16 @@ creat Adaf-Spectrogram:
 > If any of the above source links become unavailable, please download the datasets from the respective dataset folders in this repository.
 > 
 > Additionally, the TTSwing2.0 dataset contains personal information and is therefore not publicly released, along with its corresponding code.
-## Kaggle Link
 
+## Kaggle Link
+All experiments in this study were implemented using the PyTorch framework and trained on the Kaggle platform with NVIDIA P100 GPUs.  
+The training code is available at the following Kaggle notebooks, or you can download them from the respective dataset folders in this repository.
+
+| Dataset    | Model | Kaggle Notebook Link                                                                                         |
+|------------|--------|-------------------------------------------------------------------------------------------------------------|
+| MicSigV1   | CNN    | [MicSigV1 - K-Fold CNN](https://www.kaggle.com/code/dingyan0418/micsigv1-k-fold-cnn)                        |
+| MicSigV1   | ViT    | [MicSigV1 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/micsigv1-5-fold-vit)                         |
+| ESC50      | CNN    | [ESC50 - 5-Fold CNN](https://www.kaggle.com/code/dingyan0418/esc50-5-fold-cnn)                               |
+| ESC50      | ViT    | [ESC50 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/esc50-5-fold-vit)                               |
+| BSC5       | CNN    | [BSC5 - 5-Fold CNN](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-cnn)                                 |
+| BSC5       | ViT    | [BSC5 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-vit)                                 |
