@@ -39,14 +39,14 @@ for subfolder in os.listdir(folder_path):
                     # 計算 STFT
                     frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
 
-                    # S_db = librosa.amplitude_to_db(np.abs(spectrogram), ref=np.max)
+                    # S_db = librosa.amplitude_to_db(np.abs(spectrogram), ref=np.max)    #(dB)
                     
                     # 畫圖並保存
                     plt.figure()
 
-                    # plt.imshow(np.abs(spectrogram), aspect='auto', origin='lower', cmap='viridis')
-                    plt.imshow(np.abs(spectrogram)** 2, aspect='auto', origin='lower', cmap='viridis')
-                    # plt.imshow(S_db, aspect='auto', origin='lower', cmap='viridis')
+                    # plt.imshow(np.abs(spectrogram), aspect='auto', origin='lower', cmap='viridis')     #(Amplitude)
+                    plt.imshow(np.abs(spectrogram)** 2, aspect='auto', origin='lower', cmap='viridis')   #(Power)
+                    # plt.imshow(S_db, aspect='auto', origin='lower', cmap='viridis')                    #(dB)
                     plt.axis('off')  # 移除所有軸和標籤
                     
                     # 暫時保存圖片
@@ -66,3 +66,4 @@ for subfolder in os.listdir(folder_path):
                     print(f"Error processing file {filename}: {e}")
 
 print('Spectrograms 生成完畢！')
+
