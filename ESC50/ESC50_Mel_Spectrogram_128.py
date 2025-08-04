@@ -34,7 +34,7 @@ def convert_wav_to_spectrogram(wav_path, output_path, sr=44100, n_mels=128, n_ff
         # 刪除臨時文件
         os.remove('temp.png')
     except Exception as e:
-        print(f"Error processing {txt_path}: {e}")
+        print(f"Error processing {wav_path}: {e}")
 
 
 # 設定資料夾路徑
@@ -53,3 +53,4 @@ for file_name in os.listdir(base_folder):
 
 
 print("Conversion completed.")
+
