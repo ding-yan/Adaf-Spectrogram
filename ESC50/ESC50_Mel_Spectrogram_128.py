@@ -9,9 +9,9 @@ from PIL import Image
 from scipy.io import wavfile
 
 # 定義轉換函數
-def convert_txt_to_spectrogram(txt_path, output_path, sr=44100, n_mels=128, n_fft=2048, hop_length=512, size=(128, 128)):
+def convert_wav_to_spectrogram(wav_path, output_path, sr=44100, n_mels=128, n_fft=2048, hop_length=512, size=(128, 128)):
     try:
-        samplerate,audio_data = wavfile.read(txt_path)
+        samplerate,audio_data = wavfile.read(wav_path)
         # 如果音訊資料是整數類型，則標準化為浮點數
         if np.issubdtype(audio_data.dtype, np.integer):
             audio_data = audio_data.astype(np.float32) / np.max(np.abs(audio_data))
@@ -47,8 +47,9 @@ os.makedirs(output_folder, exist_ok=True)
 # 遍歷資料夾中的所有wav文件
 for file_name in os.listdir(base_folder):
     if file_name.endswith('.wav'):
-        txt_path = os.path.join(base_folder, file_name)
+        wav_path = os.path.join(base_folder, file_name)
         output_path = os.path.join(output_folder, f"{os.path.splitext(file_name)[0]}.png")
-        convert_txt_to_spectrogram(txt_path, output_path)
+        convert_wav_to_spectrogram(wav_path, output_path)
+
 
 print("Conversion completed.")
