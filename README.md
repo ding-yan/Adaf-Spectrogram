@@ -5,7 +5,15 @@ We proposes a novel **Adaptive Frequency-Axis Spectrogram (Adaf-Spectrogram)**. 
 </p>
 
 ## Environment
-creat Adaf-Spectrogram:
+Generate spectrogram:
+To reproduce the spectrogram generation process, please make sure to install the required Python packages with the following versions:
+
+```bash
+pip install numpy==1.24.3
+pip install matplotlib==3.9.2
+pip install scipy==1.8.0
+pip install Pillow==8.4.0
+pip install librosa==0.10.2.post1
 
 ## Datasets
 | Abbreviation | Full Name                                | Source (Link)                                                                 |
