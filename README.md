@@ -38,12 +38,14 @@ pip install librosa==0.10.2.post1
 | ESC50      | ViT    | [ESC50 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/esc50-5-fold-vit)                               |
 | BSC5       | CNN    | [BSC5 - 5-Fold CNN](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-cnn)                                 |
 | BSC5       | ViT    | [BSC5 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-vit)                                 |
+
+  - After clicking the link, click **"Copy & Edit"** to modify and run the notebook.
 > **Note:**  
 > Each Kaggle notebook is pre-configured with the required input datasets.  
 > 
-> The dataset image folders follow a consistent naming convention, making it easy to understand the spectrogram type and configuration used.
+> Each input dataset follows a consistent naming convention, making it easy to understand the spectrogram type and configuration used.
 
-> **Folder Naming Format:**
+> **Dataset Naming Format:**
 >
 > ```
 > <Dataset>_<SpectrogramType>_<NumberOfSections or Bands>(<SpectrumType>)
