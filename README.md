@@ -60,12 +60,12 @@ pip install librosa==0.10.2.post1
 
 ## Project Structure
 
-<code>
+```
 Root/
 │
 ├── BSC5/ # Scripts and notebooks for BSC5 dataset
-│ ├── BSC5_stage1_select_audio.py   # Stage 1: Audio selection for BSC5 dataset
-│ ├── BSC5_stage2_labeled.py        # Stage 2: Labeling for BSC5 dataset
+│ ├── BSC5_stage1_select_audio.py   # Stage 1: Select 5422 labeled spectrograms from 9107 bird song audio clips
+│ ├── BSC5_stage2_labeled.py        # Stage 2: Labeling bird species (0-4 for 5 species)
 │ ├── BSC5_Ori_Spectrogram.py       # Generate Original spectrogram for BSC5 dataset
 │ ├── BSC5_Mel_Spectrogram_128.py   # Generate Mel-Spectrogram (n_mels=128) for BSC5 dataset
 │ ├── BSC5_Adaf_Spectrogram.py      # Generate Adaf-Spectrogram for BSC5 dataset
@@ -80,15 +80,14 @@ Root/
 │ └── esc50-5-fold-vit.ipynb       # Vision Transformer 5-fold cross-validation experiment
 │
 ├── MicSigV1/ # Scripts and notebooks for MicSigV1 dataset
-│ ├── MicSigV1_stage1_select_and_labeled.py   # Stage 1: Seismic signal selection & labeling for MicSigV1 dataset
+│ ├── MicSigV1_stage1_select_and_labeled.py   # Stage 1: Select & label seismic signals (LP and VT events from BREF station)
 │ ├── MicSigV1_Ori_Spectrogram.py             # Generate original spectrogram for MicSigV1 dataset
 │ ├── MicSigV1_Mel_Spectrogram_64.py          # Generate Mel-Spectrogram (n_mels=64) for MicSigV1 dataset
 │ ├── MicSigV1_Adaf_Spectrogram.py            # Generate Adaf-Spectrogram for MicSigV1 dataset
 │ ├── micsigv1-5-fold-vit.ipynb               # Vision Transformer 5-fold cross-validation experiment
 │ └── micsigv1-k-fold-cnn.ipynb               # CNN k-fold(k=5 or 10) cross-validation experiment
 │
-├── Adaf-Spectrogram Process diagram.png   # Workflow diagram for Adaf-Spectrogram
-├── Original vs. Adaf-Spectrogram.png      # Visual comparison between conventional and Adaf-Spectrogram
-└── README.md # Project documentation
-
-</code> 
+├── Adaf-Spectrogram Process diagram.png    # Workflow diagram for Adaf-Spectrogram
+├── Original vs. Adaf-Spectrogram.png       # Visual comparison between conventional and Adaf-Spectrogram
+└── README.md                               # Project documentation
+```
