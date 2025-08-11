@@ -91,3 +91,8 @@ Root/
 ├── Original vs. Adaf-Spectrogram.png       # Visual comparison between conventional and Adaf-Spectrogram
 └── README.md                               # Project documentation
 ```
+> **Note:**  
+> 1. Please download the dataset manually before running any scripts.  
+> 2. Run the Stage scripts first (which include data selection and labeling).  
+> 3. Generate the spectrograms as needed (Original, Mel, Adaf).  
+> 4. Finally, run model training and evaluation (CNN or ViT).
