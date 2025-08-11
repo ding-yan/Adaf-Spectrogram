@@ -4,6 +4,12 @@ We proposes a novel **Adaptive Frequency-Axis Spectrogram (Adaf-Spectrogram)**. 
   <img src="https://github.com/ding-yan/Adaf-Spectrogram/raw/main/Adaf-Spectrogram%20Process%20diagram.png" alt="Adaf-Spectrogram Process Diagram" width="700"/>
 </p>
 
+## Original vs. Adaf-Spectrogram
+Here we compare the standard spectrogram with the Adaf-Spectrogram. The adaptive scaling redistributes the frequency axis according to the dataset’s energy distribution, enabling better visibility of important patterns and structures in the signal.
+<p align="center">
+  <img src="https://github.com/ding-yan/Adaf-Spectrogram/blob/main/Original%20vs.%20Adaf-Spectrogram.png" alt="Original vs. Adaf-Spectrogram" width="700"/>
+</p>
+
 ## Environment
 ### Generate spectrogram
 To reproduce the spectrogram generation process, please make sure to install the required Python packages with the following versions:
@@ -52,5 +58,37 @@ pip install librosa==0.10.2.post1
 > - `<NumberOfSections or Bands>`: Number of frequency sections or mel bands (if applicable)
 > - `<SpectrumType>`: Type of spectrum representation — Amplitude, Power, or dB (optional)
 
+## Project Structure
 
+<code>
+Root/
+│
+├── BSC5/ # Scripts and notebooks for BSC5 dataset
+│ ├── BSC5_stage1_select_audio.py   # Stage 1: Audio selection for BSC5 dataset
+│ ├── BSC5_stage2_labeled.py        # Stage 2: Labeling for BSC5 dataset
+│ ├── BSC5_Ori_Spectrogram.py       # Generate Original spectrogram for BSC5 dataset
+│ ├── BSC5_Mel_Spectrogram_128.py   # Generate Mel-Spectrogram (n_mels=128) for BSC5 dataset
+│ ├── BSC5_Adaf_Spectrogram.py      # Generate Adaf-Spectrogram for BSC5 dataset
+│ ├── bsc5-5-fold-cnn.ipynb         # CNN 5-fold cross-validation experiment
+│ └── bsc5-5-fold-vit.ipynb         # Vision Transformer 5-fold cross-validation experiment
+│
+├── ESC50/ # Scripts and notebooks for ESC50 dataset
+│ ├── ESC50_Ori_Spectrogram.py     # Generate Original spectrogram for ESC50 dataset
+│ ├── ESC50_Mel_Spectrogram_128.py # Generate Mel-Spectrogram (n_mels=128) for ESC50 dataset
+│ ├── ESC50_Adaf_Spectrogram.py    # Generate Adaf-Spectrogram for ESC50 dataset
+│ ├── esc50-5-fold-cnn.ipynb       # CNN 5-fold cross-validation experiment
+│ └── esc50-5-fold-vit.ipynb       # Vision Transformer 5-fold cross-validation experiment
+│
+├── MicSigV1/ # Scripts and notebooks for MicSigV1 dataset
+│ ├── MicSigV1_stage1_select_and_labeled.py   # Stage 1: Seismic signal selection & labeling for MicSigV1 dataset
+│ ├── MicSigV1_Ori_Spectrogram.py             # Generate original spectrogram for MicSigV1 dataset
+│ ├── MicSigV1_Mel_Spectrogram_64.py          # Generate Mel-Spectrogram (n_mels=64) for MicSigV1 dataset
+│ ├── MicSigV1_Adaf_Spectrogram.py            # Generate Adaf-Spectrogram for MicSigV1 dataset
+│ ├── micsigv1-5-fold-vit.ipynb               # Vision Transformer 5-fold cross-validation experiment
+│ └── micsigv1-k-fold-cnn.ipynb               # CNN k-fold(k=5 or 10) cross-validation experiment
+│
+├── Adaf-Spectrogram Process diagram.png   # Workflow diagram for Adaf-Spectrogram
+├── Original vs. Adaf-Spectrogram.png      # Visual comparison between conventional and Adaf-Spectrogram
+└── README.md # Project documentation
 
+</code> 
