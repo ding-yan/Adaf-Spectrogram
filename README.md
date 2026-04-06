@@ -1,11 +1,11 @@
 # Adaf-Spectrogram
-We proposes a novel **Adaptive Frequency-Axis Spectrogram (Adaf-Spectrogram)**. This method uses a data-driven approach to automatically adjust the frequency axis scaling by computing the overall frequency energy distribution across an entire dataset, thereby more effectively emphasizing critical frequency features. Experimental results demonstrate that the proposed Adaf-Spectrogram exhibits excellent adaptability across multiple datasets. Furthermore, it outperforms conventional linear-scale spectrograms in recognition tasks, showcasing a significant performance improvement.
+We propose a novel **Adaptive Frequency-Axis Spectrogram (Adaf-Spectrogram)**. This method uses a data-driven approach to automatically adjust the frequency axis scaling by computing the overall frequency-energy distribution across the dataset, thereby more effectively emphasizing critical frequency features. Experimental results demonstrate that the proposed Adaf-Spectrogram exhibits excellent adaptability across multiple datasets. Furthermore, it outperforms conventional linear-scale spectrograms in recognition tasks, demonstrating a significant performance improvement.
 <p align="center">
   <img src="https://github.com/ding-yan/Adaf-Spectrogram/raw/main/Adaf-Spectrogram%20Process%20diagram.png" alt="Adaf-Spectrogram Process Diagram" width="700"/>
 </p>
 
 ## Original vs. Adaf-Spectrogram
-Here we compare the standard spectrogram with the Adaf-Spectrogram. The adaptive scaling redistributes the frequency axis according to the dataset’s energy distribution, enabling better visibility of important patterns and structures in the signal.
+Here we compare the standard spectrogram with the Adaf-Spectrogram. The adaptive scaling redistributes the frequency axis based on the dataset’s energy distribution, improving visibility of important patterns and structures in the signal.
 <p align="center">
   <img src="https://github.com/ding-yan/Adaf-Spectrogram/blob/main/Original%20vs.%20Adaf-Spectrogram.png" alt="Original vs. Adaf-Spectrogram" width="700"/>
 </p>
@@ -46,7 +46,7 @@ pip install librosa==0.10.2.post1
 | BSC5       | ViT    | [BSC5 - 5-Fold ViT](https://www.kaggle.com/code/dingyan0418/bsc5-5-fold-vit)                                 |
 - After clicking the link, click **"Copy & Edit"** to modify and run the notebook.
 > **Note:**  
-> Each Kaggle notebook is pre-configured with the required input datasets, which follow a consistent naming convention to make it easy to understand the spectrogram type and configuration used.
+> Each Kaggle notebook is pre-configured with the required input datasets, which follow a consistent naming convention to make it easy to identify the spectrogram type and configuration used.
 
 > **Dataset Naming Format:**
 >
@@ -95,5 +95,5 @@ Root/
 > 1. Please download the dataset manually before running any scripts.  
 > 2. Run the Stage scripts first (which include data selection and labeling).  
 > 3. Generate the spectrograms as needed (Original, Mel, Adaf).  
->    * Please modify the spectrogram generation parameters according to your needs.  
+>    * Please adjust the spectrogram generation parameters as needed.  
 > 4. Finally, run model training and evaluation (CNN or ViT).
