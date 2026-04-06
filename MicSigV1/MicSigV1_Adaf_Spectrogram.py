@@ -79,7 +79,7 @@ try:
         upper_bound = np.searchsorted(cumulative_energy, section_indices[i + 1])
         
         # 確保 upper_bound 不小於 lower_bound，避免重複
-        if upper_bound == lower_bound:
+        if upper_bound <= lower_bound:
             upper_bound = lower_bound + 1
         
         frequency_ranges.append((frequencies[lower_bound], frequencies[upper_bound - 1]))
