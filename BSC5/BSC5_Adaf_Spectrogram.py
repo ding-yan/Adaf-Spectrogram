@@ -31,10 +31,14 @@ try:
             try:
                 # 讀取音訊數據
                 samplerate,audio_data = wavfile.read(filepath)
-                
+
+                if samplerate != sampling_rate:
+                    print(f"Warning: {filename} sample rate is {samplerate}, expected {sampling_rate}. Skipping.")
+                    continue
+
                 # 計算 STFT
                 frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
-                
+
                 # 計算頻率能量
                 frequency_energy = np.sum(np.abs(spectrogram)**2, axis=1)
                 
@@ -91,6 +95,10 @@ try:
             try:
                 # 讀取音訊數據
                 samplerate,audio_data = wavfile.read(filepath)
+
+                if samplerate != sampling_rate:
+                    print(f"Warning: {filename} sample rate is {samplerate}, expected {sampling_rate}. Skipping.")
+                    continue
 
                 # 計算 STFT
                 frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
