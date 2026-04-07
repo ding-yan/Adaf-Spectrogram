@@ -2,15 +2,18 @@ import pandas as pd
 import os
 import shutil
 
-# 路徑設定
-csv_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\bird_songs_metadata.csv'
-selected_folder = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles'
-output_folder = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
+# data paths
+csv_path = './data/bird_songs_metadata.csv'
+#csv_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\bird_songs_metadata.csv'
+selected_folder = './data/selected_wavfiles'
+#selected_folder = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles'
+output_folder = './data/selected_wavfiles_label'
+#output_folder = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
 
-# 建立輸出資料夾（如果不存在）
+# create output directory
 os.makedirs(output_folder, exist_ok=True)
 
-# 定義鳥種對應的編號
+# define bird species mapping
 label_map = {
     "Bewick's Wren": 0,
     "Northern Cardinal": 1,
@@ -19,13 +22,13 @@ label_map = {
     "Northern Mockingbird": 4
 }
 
-# 讀取 CSV
+# read CSV
 df = pd.read_csv(csv_path)
 
-# 過濾只包含五種鳥的資料
+# filter only the data of five bird species
 df = df[df['name'].isin(label_map.keys())]
 
-# 對每個檔案重新命名
+# rename and copy each file
 for _, row in df.iterrows():
     original_filename = row['filename']
     bird_name = row['name']
@@ -38,6 +41,6 @@ for _, row in df.iterrows():
     if os.path.exists(old_path):
         shutil.copy(old_path, new_path)
     else:
-        print(f"找不到檔案：{original_filename}")
+        print(f"Cannot find file：{original_filename}")
 
-print("重新命名並複製完成。")
+print("Rename and copy completed.")
