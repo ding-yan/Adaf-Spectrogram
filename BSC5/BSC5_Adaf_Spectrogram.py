@@ -9,40 +9,41 @@ from scipy.io import wavfile
 import librosa
 import librosa.display
 
-# 資料夾路徑
-folder_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
+# data paths
+#folder_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
+folder_path = './data/selected_wavfiles_label'
 output_folder = os.path.join(folder_path, 'BSC5_Adaf_Spectrograms_128(Power)')
-# 如果儲存圖片的資料夾不存在，則創建
+# create output directory
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
 
 accumulated_frequency_energy = None
-sampling_rate = 22050  # 每秒22050個樣本
-nperseg = 2048  # 每個窗口的長度
-noverlap = 1536  # 窗口重疊數 2048-512=1536
+sampling_rate = 22050  # 22050 samples per second
+nperseg = 2048  # length of each window
+noverlap = 1536  # window overlap, 2048-512=1536
 size=(128, 128)
 
 try:
-    # 遍歷資料夾內的所有 wav 檔案
+    # process each file
     for filename in os.listdir(folder_path):
         if filename.endswith(".wav"):
             filepath = os.path.join(folder_path, filename)
             
             try:
-                # 讀取音訊數據
+                # read audio data
                 samplerate,audio_data = wavfile.read(filepath)
 
                 if samplerate != sampling_rate:
                     print(f"Warning: {filename} sample rate is {samplerate}, expected {sampling_rate}. Skipping.")
                     continue
 
-                # 計算 STFT
+                # calculate STFT
                 frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
 
-                # 計算頻率能量
+                # calculate frequency energy
                 frequency_energy = np.sum(np.abs(spectrogram)**2, axis=1)
                 
-                # 累加頻率能量
+                # accumulate frequency energy
                 if accumulated_frequency_energy is None:
                     accumulated_frequency_energy = frequency_energy
                 else:
@@ -55,20 +56,20 @@ try:
 
     print(frequencies)
 
-    # 根據頻率能量分佈劃分區段
+    # divide into sections based on frequency energy distribution
     total_energy = np.sum(accumulated_frequency_energy)
-    energy_proportions =  accumulated_frequency_energy / total_energy  # 每個頻率的能量占比
+    energy_proportions =  accumulated_frequency_energy / total_energy  # energy proportion of each frequency
     cumulative_energy = np.cumsum(energy_proportions)
 
     frequency_energy_list = [(frequencies[i],  accumulated_frequency_energy[i]) for i in range(len(frequencies))]
 
-    # 顯示每個頻率及其能量占比
+    # display each frequency and its energy proportion
     for freq, energy in frequency_energy_list:
         proportion = (energy / total_energy) * 100
-        print(f'頻率 {freq:.2f} Hz, 能量: {energy:.2f}, 能量占比: {proportion:.2f}%')
+        print(f'frequency {freq:.2f} Hz, energy: {energy:.2f}, energy proportion: {proportion:.2f}%')
     # print(cumulative_energy)
 
-    # 設定區段數量
+    # set number of sections
     num_sections = 128 
     section_indices = np.linspace(0, 1, num_sections + 1)
 
@@ -78,32 +79,32 @@ try:
         lower_bound = np.searchsorted(cumulative_energy, section_indices[i])
         upper_bound = np.searchsorted(cumulative_energy, section_indices[i + 1])
         
-        # 確保 upper_bound 不小於 lower_bound，避免重複
+        # ensure upper_bound is not less than lower_bound, avoid duplicate
         if upper_bound <= lower_bound:
             upper_bound = lower_bound + 1
         
         frequency_ranges.append((frequencies[lower_bound], frequencies[upper_bound - 1]))
 
-    # 確保最後一個區段能夠包含所有剩餘的頻率
+    # ensure the last section can contain all remaining frequencies
     frequency_ranges[-1] = (frequency_ranges[-1][0], frequencies[-1])
 
-    # 根據相同的頻率範圍生成自適應的頻譜圖
+    # generate adaptive spectrogram based on the same frequency range
     for filename in os.listdir(folder_path):
         if filename.endswith(".wav"):
             filepath = os.path.join(folder_path, filename)
             
             try:
-                # 讀取音訊數據
+                # read audio data
                 samplerate,audio_data = wavfile.read(filepath)
 
                 if samplerate != sampling_rate:
                     print(f"Warning: {filename} sample rate is {samplerate}, expected {sampling_rate}. Skipping.")
                     continue
 
-                # 計算 STFT
+                # calculate STFT
                 frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
 
-                # 建立自適應頻譜圖和計算每個區段的總能量
+                # create adaptive spectrogram and calculate total energy of each section
                 adaptive_spectrogram = np.zeros((num_sections, len(times)))
                 section_energy_totals = np.zeros(num_sections)
 
@@ -117,7 +118,7 @@ try:
 
                 # S_db_1 = librosa.amplitude_to_db(adaptive_spectrogram, ref=np.max)
 
-                # 畫
+                # plot
                 plt.figure(figsize=(1.28, 1.28), dpi=100)
 
                 plt.imshow(adaptive_spectrogram[::-1], aspect='auto', cmap='viridis', extent=[times.min(), times.max(), 0, num_sections])
@@ -145,44 +146,29 @@ try:
 
 
 
-    # 計算每個區段的能量百分比
+    # calculate energy percentage of each section
     section_energy_percentages = (section_energy_totals / total_energy) * 100
 
-    # 顯示每個區段的 Hz 範圍和總能量
+    # display each section's Hz range and total energy
     for i, (low, high) in enumerate(frequency_ranges):
-        print(f'區段 {i + 1}: {low:.2f} Hz - {high:.2f} Hz, 總能量: {section_energy_totals[i]:.2f}, 百分比: {section_energy_percentages[i]:.2f}%')
+        print(f'section {i + 1}: {low:.2f} Hz - {high:.2f} Hz, total energy: {section_energy_totals[i]:.2f}, percentage: {section_energy_percentages[i]:.2f}%')
 
-    # 儲存資訊到 TXT
+    # save information to TXT
     output_path = f'Adaf_frequency_section_{num_sections}_info_power.txt'
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(f"sampling_rate: {sampling_rate}\n")
         f.write(f"nperseg: {nperseg}\n")
         f.write(f"noverlap: {noverlap}\n") 
-        # 先寫入 frequencies 頻率軸
+        # write frequencies axis first
         f.write("=== Frequencies ===\n")
         for freq in frequencies:
             f.write(f"{freq:} Hz\n")
 
-        f.write("\n=== 各區段頻率範圍 ===\n")
+        f.write("\n=== frequency ranges of each section ===\n")
         for i, (low, high) in enumerate(frequency_ranges):
-            f.write(f"區段 {i + 1}: {low:} Hz - {high:} Hz\n")
+            f.write(f"section {i + 1}: {low:} Hz - {high:} Hz\n")
 
-    print(f"已儲存至 {output_path}")
-
-
-    # 獲取桌面路徑
-    # desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-    # # 頻率能量分佈的條形圖
-    # plt.figure(figsize=(40, 4))
-    # plt.bar(frequencies, accumulated_frequency_energy, width=0.25, color='b')#0.25
-    # plt.title('Frequency Distribution')
-    # plt.xlabel('Frequency [Hz]')
-    # plt.ylabel('Total Energy')
-    # # 保存到桌面
-    # output_path = os.path.join(desktop_path, 'sound.png')
-    # plt.savefig(output_path)
-    # plt.close()
-    # plt.show()
+    print(f"saved to {output_path}")
 
 except Exception as e:
     print(f"Error processing {filepath}: {e}")

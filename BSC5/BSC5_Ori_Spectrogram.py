@@ -10,20 +10,21 @@ from scipy.signal import spectrogram
 import librosa
 import librosa.display
 
-# 設定資料夾路徑
-folder_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
+# data paths
+#folder_path = 'C:\\Users\\User\\Desktop\\Dataset\\bird song data set\\selected_wavfiles_label'
+folder_path = './data/selected_wavfiles_label'
 
-# 設定參數
-sampling_rate = 22050  # 每秒22050個樣本
-nperseg = 2048        # 每個窗口的長度
-noverlap = 1536       # 窗口重疊數，75% 重疊-2048-512=1536
-output_size = (128, 128)  # 期望輸出的圖片大小
+# parameters
+sampling_rate = 22050  # 22050 samples per second
+nperseg = 2048        # length of each window
+noverlap = 1536       # window overlap, 75% overlap - 2048-512=1536
+output_size = (128, 128)  # expected output image size
 
-# 建立輸出資料夾
+# create output directory
 output_folder = os.path.join(folder_path, 'BSC5_Spectrograms(Power)')
 os.makedirs(output_folder, exist_ok=True)
 
-#
+# process each file
 for subfolder in os.listdir(folder_path):
     subfolder_path = os.path.join(folder_path, subfolder)
     
@@ -33,36 +34,36 @@ for subfolder in os.listdir(folder_path):
                 file_path = os.path.join(subfolder_path, filename)
                 
                 try:
-                    # 讀取音訊數據
+                    # read audio data
                     samplerate,audio_data = wavfile.read(file_path)
 
-                    # 計算 STFT
+                    # calculate STFT
                     frequencies, times, spectrogram = stft(audio_data, fs=sampling_rate, nperseg=nperseg, noverlap=noverlap)
 
                     # S_db_1 = librosa.amplitude_to_db(np.abs(spectrogram), ref=np.max)     #(dB)
                     
-                    # 畫圖並保存
+                    # plot and save
                     plt.figure()
 
                     # plt.pcolormesh(times, frequencies, np.abs(spectrogram), shading='gouraud')            #(Amplitude)
                     plt.imshow(np.abs(spectrogram)**2, aspect='auto', origin='lower', cmap='viridis')       #(Power)
                     # plt.imshow(S_db_1, aspect='auto', origin='lower', cmap='viridis')                     #(dB)
-                    plt.axis('off')  # 移除所有軸和標籤
+                    plt.axis('off')  # remove all axes and labels
                     
-                    # 暫時保存圖片
+                    # temporarily save image
                     temp_file = os.path.join(output_folder, f'{os.path.splitext(filename)[0]}_temp.png')
                     plt.savefig(temp_file, bbox_inches='tight', pad_inches=0)
                     plt.close()
                     
-                    # 重新調整圖片大小
+                    # resize image
                     img = Image.open(temp_file)
                     img_resized = img.resize(output_size, Image.LANCZOS)
                     output_file = os.path.join(output_folder, f'{os.path.splitext(filename)[0]}.png')
                     img_resized.save(output_file)
                     
-                    # 刪除暫時圖片
+                    # delete temporary image
                     os.remove(temp_file)
                 except Exception as e:
                     print(f"Error processing file {filename}: {e}")
 
-print('Spectrograms 生成完畢！')
+print('Spectrograms generated!')
